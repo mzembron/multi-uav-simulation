@@ -24,7 +24,7 @@ public:
 
     global_position_measurement.timestamp_sample = _node.get_clock()->now();
 
-    global_position_measurement.lat_lon = Eigen::Vector2d {48, 9};
+    global_position_measurement.lat_lon = Eigen::Vector2d {-47.396, 8.54616};
     global_position_measurement.horizontal_variance = 0.1f;
 
     global_position_measurement.altitude_msl = 12.4f;
