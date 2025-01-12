@@ -20,9 +20,7 @@ static const bool kEnableDebugOutput = true;
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
-  std::cout<<"starting main"<<std::endl;
-  // rclcpp::spin(std::make_shared<ExampleGlobalNavigationNode>());
-  rclcpp::spin(std::make_shared<MyNodeWithMode>(kNodeName, kEnableDebugOutput));
+  rclcpp::spin(std::make_shared<ExampleGlobalNavigationNode>());
   rclcpp::shutdown();
   return 0;
 }

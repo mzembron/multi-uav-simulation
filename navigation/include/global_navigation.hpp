@@ -14,7 +14,8 @@ public:
   {
     _timer =
       node.create_wall_timer(1s, [this] {updateGlobalPosition();});
-
+    counter = 0;
+    direction = 1.0f;
     RCLCPP_INFO(node.get_logger(), "example_global_navigation_node running!");
   }
 
@@ -24,7 +25,17 @@ public:
 
     global_position_measurement.timestamp_sample = _node.get_clock()->now();
 
-    global_position_measurement.lat_lon = Eigen::Vector2d {-47.396, 8.54616};
+    
+    if (counter >2)
+    {
+      direction = -direction;
+      counter = 0;
+    }
+    else
+    {
+      ++counter;
+    }
+    global_position_measurement.lat_lon = Eigen::Vector2d {direction*47.396, 8.54616};
     global_position_measurement.horizontal_variance = 0.1f;
 
     global_position_measurement.altitude_msl = 12.4f;
@@ -44,6 +55,8 @@ public:
 
 private:
   rclcpp::TimerBase::SharedPtr _timer;
+  int counter;
+  float direction;
 };
 
 class ExampleGlobalNavigationNode : public rclcpp::Node
